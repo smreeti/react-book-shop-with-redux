@@ -1,0 +1,84 @@
+.book-shop {
+    margin: 20px;
+}
+
+.table {
+    width: 80%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.table-bordered, .table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+.hidden {
+    display: none;
+}
+
+.success {
+    color: green
+}
+
+.error {
+    color: red
+}
+
+.Modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    padding: 2em;
+    min-width: 20em;
+    max-width: 70%;
+    /*color: #f00;*/
+    background-color: #fff;
+    border-radius: 1em;
+    transform: translate(-50%, -50%);
+    outline: transparent;
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .4);
+}
+
+.App-nav {
+    margin: 20px;
+    padding: 10px;
+    border-bottom: 2px solid #508FCA;
+}
+
+.App-nav ul {
+    padding: 0;
+    margin: 0;
+}
+
+.App-nav-item {
+    list-style: none;
+    display: inline-block;
+    margin-right: 32px;
+    font-size: 24px;
+    border-bottom: 4px solid transparent;
+}
+
+.App-content {
+    margin: 0 20px;
+}
+
+.App-nav-item a {
+    cursor: pointer;
+}
+
+.App-nav-item a:hover {
+    color: #999;
+}
+
+.App-nav-item.selected {
+    border-bottom-color: #FFAA3F;
+}
