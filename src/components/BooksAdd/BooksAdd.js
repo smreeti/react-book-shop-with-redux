@@ -9,12 +9,6 @@ import BookDeleteModal from "./BookDeleteModal";
 
 const shortid = require("shortid");
 
-// import BooksAdd from "../addBooks/BooksAdd";
-// import BookUpdate from "../addBooks/BookUpdate";
-// import AlertMessageInfo from "../AlertMessageInfo";
-// import BooksManage from "../addBooks/BooksManage";
-// import BookDeleteModal from "../addBooks/BookDeleteModal";
-
 class BooksAdd extends React.Component {
 
     state = {
@@ -124,11 +118,12 @@ class BooksAdd extends React.Component {
 
     updateBook = () => {
 
+        const {id, name, author, publishedDate} = this.state;
         const data = {
-            id: this.state.id,
-            name: this.state.name,
-            author: this.state.author,
-            publishedDate: this.state.publishedDate
+            id,
+            name,
+            author,
+            publishedDate
         };
 
         store.dispatch(updateBook(data));
@@ -136,7 +131,7 @@ class BooksAdd extends React.Component {
         this.resetStateParams();
     };
 
-    deleteBook =()=>{
+    deleteBook = () => {
         store.dispatch(deleteBook(this.state.id));
 
         this.setState({

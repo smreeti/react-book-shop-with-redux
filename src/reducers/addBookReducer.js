@@ -7,7 +7,6 @@ const initialState = {
 
 export default function addBookReducer(state = initialState, action) {
 
-    debugger;
     switch (action.type) {
 
         case ADD_BOOK:
