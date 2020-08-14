@@ -6,8 +6,8 @@ const Sidebar = ({routes}) => {
 
     return (
         <aside className="Sidebar">
-            {routes.map((route) => {
-                return <li><Link to={route.path}>{route.menu}</Link></li>
+            {routes.map((route, index) => {
+                return <li key={index}><Link to={route.path}>{route.menu}</Link></li>
             })}
         </aside>
     );

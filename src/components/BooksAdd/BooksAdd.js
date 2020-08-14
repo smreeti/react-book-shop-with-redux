@@ -1,9 +1,8 @@
 import React from "react";
 import store from "../../store";
-import BooksAddForm from "./BooksAddForm";
-import {deleteBook, editBookStatus, submitBook, updateBook} from "../../actions";
+import BooksForm from "./BooksForm";
+import {deleteBook, submitBook, updateBook} from "../../actions";
 import AlertMessageInfo from "../AlertMessageInfo";
-import BookUpdate from "./BookUpdate";
 import BooksManage from "./BooksManage";
 import BookDeleteModal from "./BookDeleteModal";
 
@@ -21,8 +20,10 @@ class BooksAdd extends React.Component {
             message: ''
         },
         showAlertModal: false,
-        showDeleteModal: false
+        showDeleteModal: false,
+        editing: false
     };
+
 
     handleChange = (event) => {
         const {name, value} = event.target;
@@ -105,7 +106,7 @@ class BooksAdd extends React.Component {
     editBook = (bookInfo) => {
         this.resetAlertMessage();
 
-        store.dispatch(editBookStatus());
+        this.setEditing(true);
 
         this.setState({
                 id: bookInfo.id,
@@ -127,8 +128,6 @@ class BooksAdd extends React.Component {
         };
 
         store.dispatch(updateBook(data));
-
-        this.resetStateParams();
     };
 
     deleteBook = () => {
@@ -144,8 +143,10 @@ class BooksAdd extends React.Component {
         });
     };
 
-    setEditing = () => {
-        store.dispatch(editBookStatus());
+    setEditing = (value) => {
+        this.setState({
+            editing: value
+        })
     };
 
     openDeleteModal = (id) => {
@@ -159,39 +160,23 @@ class BooksAdd extends React.Component {
     };
 
     render() {
-        const bookAddObj = {
+        const bookObj = {
             name: this.state.name,
             author: this.state.author,
             publishedDate: this.state.publishedDate
         };
-
-        const bookUpdateObj = {
-            name: this.state.name,
-            author: this.state.author,
-            publishedDate: this.state.publishedDate
-        };
-
-        const {editing} = store.getState().addBookReducer;
 
         return (
             <div>
-                {
-                    editing === false ? (
-                            <BooksAddForm
-                                bookAddObj={bookAddObj}
-                                handleChange={this.handleChange}
-                                handleSubmit={this.handleSubmit}
-                            />
-                        )
-                        : (
-                            <BookUpdate
-                                bookUpdateObj={bookUpdateObj}
-                                handleChange={this.handleChange}
-                                updateBook={this.updateBook}
-                                setEditing={this.setEditing}
-                            />
-                        )
-                }
+
+                <BooksForm
+                    bookObj={bookObj}
+                    editing={this.state.editing}
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                    updateBook={this.updateBook}
+                    setEditing={this.setEditing}
+                />
 
                 <br/>
 

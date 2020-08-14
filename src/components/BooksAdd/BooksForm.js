@@ -1,18 +1,41 @@
 import React from "react";
 
-const BooksAddForm = (props) => {
+const BooksForm = (props) => {
 
-    const {bookAddObj, handleChange, handleSubmit} = props;
+    const {bookObj, editing, handleChange, handleSubmit, updateBook, setEditing} = props;
+
+    const addButton = (
+
+        <div className="col-sm-10 offset-sm-2">
+            <button type="submit"
+                    className="btn btn-primary"
+                    onClick={handleSubmit}>Submit
+            </button>
+        </div>
+    );
+
+    const updateButton = (
+
+        <div className="col-sm-10 offset-sm-2">
+            <button className="btn btn-success mt-2"
+                    onClick={updateBook}> Update
+            </button>
+
+            <button className="btn btn-info mt-2"
+                    onClick={() => setEditing(false)}> Cancel
+            </button>
+        </div>
+    );
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form>
             <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Name</label>
                 <div className="col-sm-10">
                     <input type="text"
                            className="form-control"
                            name="name"
-                           value={bookAddObj.name}
+                           value={bookObj.name}
                            onChange={handleChange}
                            placeholder="Enter name"
                     />
@@ -26,7 +49,7 @@ const BooksAddForm = (props) => {
                     <input type="text"
                            className="form-control"
                            name="author"
-                           value={bookAddObj.author}
+                           value={bookObj.author}
                            onChange={handleChange}
                            placeholder="Enter author"
                            required/>
@@ -40,7 +63,7 @@ const BooksAddForm = (props) => {
                     <input type="date"
                            className="form-control"
                            name="publishedDate"
-                           value={bookAddObj.publishedDate}
+                           value={bookObj.publishedDate}
                            onChange={handleChange}
                            placeholder="Enter published date"
                            required/>
@@ -50,14 +73,11 @@ const BooksAddForm = (props) => {
             <br/>
 
             <div className="form-group row">
-                <div className="col-sm-10 offset-sm-2">
-                    <button type="submit"
-                            className="btn btn-primary">Submit
-                    </button>
-                </div>
+                {editing ? updateButton : addButton}
             </div>
         </form>
     )
 };
 
-export default BooksAddForm
+
+export default BooksForm
