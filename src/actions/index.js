@@ -1,4 +1,4 @@
-import {ADD_BOOK, DELETE_BOOK, EDIT_BOOK_STATUS, UPDATE_BOOK} from "./constants/action-types";
+import {ADD_BOOK, ASSIGN_BOOK, DELETE_BOOK, EDIT_BOOK_STATUS, UPDATE_BOOK} from "./constants/action-types";
 
 export const submitBook = (data) => ({
     type: ADD_BOOK,
@@ -14,7 +14,12 @@ export const updateBook = (data) => ({
     payload: data
 });
 
-export const deleteBook = (id)=>({
+export const deleteBook = (id) => ({
     type: DELETE_BOOK,
     payload: id
+});
+
+export const assignBook = (data) => ({
+    type: ASSIGN_BOOK,
+    payload: data
 });

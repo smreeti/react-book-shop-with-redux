@@ -1,52 +1,104 @@
 import React from "react";
-import SelectComponent from "../commons/SelectComponent";
+import AssignBooksForm from "./AssignBooksForm";
+import bookCategoryData from "./bookCategoryData";
+import AssignBookManage from "../BooksAssign/AssignBookManage";
+import store from "../../store";
+import {assignBook} from "../../actions";
 
-const AssignBooks = (props) => {
+const shortid = require("shortid");
 
-    const {name, bookCategoryList, handleChange, assignBook} = props;
+class AssignBooks extends React.Component {
 
-    return (
-        <form onSubmit={assignBook}>
-            <div className="form-group row">
-                <label className="col-sm-2 col-form-label">Name</label>
+    state = ({
+        bookId: '',
+        bookCategoryId: '',
+        bookCategoryList: bookCategoryData,
+        assignedBookList: [],
+        filteredBookList: [],
+        bookList: [],
+        isSearch: false
+    });
 
-                <div className="col-sm-10">
-                    <input type="text"
-                           className="form-control"
-                           name="name"
-                           value={name}
-                           placeholder="Enter name"
-                           onChange={handleChange}
-                           required/>
-                </div>
-            </div>
-            <br/>
+    componentDidMount() {
+        const bookList = store.getState().addBookReducer.bookList;
+        this.setState({
+            bookList: bookList
+        })
+    }
 
-            <label className="col-sm-2 col-form-label"> Book Category
+    handleChange = (event) => {
 
-                <div className="col-sm-10">
+        const {name, value} = event.target;
+        this.setState({
+            [name]: value
+        })
+    };
 
-                    <SelectComponent
-                        placeholder="Select book category"
-                        name="bookCategoryId"
-                        handleChange={handleChange}
-                        options={bookCategoryList}
-                    >
-                    </SelectComponent>
-                </div>
-            </label>
+    assignBook = (event) => {
 
-            <br/>
+        event.preventDefault();
 
-            <div className="form-group row">
-                <div className="col-sm-10 offset-sm-2">
-                    <button type="submit"
-                            className="btn btn-primary">Assign
-                    </button>
-                </div>
-            </div>
-        </form>
-    )
-};
+        const bookCategoryName = this.state.bookCategoryList
+            .find(bookCategory => bookCategory.id === parseInt(this.state.bookCategoryId)).name;
 
-export default AssignBooks;
+        const bookName = this.state.bookList
+            .find(book => book.id === this.state.bookId).name;
+
+        const assignBookObj = {
+            id: shortid.generate(),
+            bookCategoryId: this.state.bookCategoryId,
+            bookName: bookName,
+            bookCategoryName: bookCategoryName
+        };
+
+        store.dispatch(assignBook(assignBookObj));
+    };
+
+    filterAssignedBooks = (event) => {
+
+        const {value} = event.target;
+
+        let filteredList = [];
+        this.state.assignedBookList.filter(
+            assigned => {
+                if (assigned.bookCategoryId === (value)) {
+                    filteredList = [...filteredList, assigned];
+                }
+                return filteredList;
+            }
+        );
+
+        this.setState({
+            filteredBookList: filteredList,
+            isSearch: value === '' ? false : true
+        });
+    };
+
+    render() {
+
+        const assignBookManageObj = {
+            assignedBookList: this.state.assignedBookList,
+            handleChange: this.handleChange,
+            bookCategoryList: this.state.bookCategoryList,
+            filteredBookList: this.state.filteredBookList,
+            isSearch: this.state.isSearch,
+            filterAssignedBooks: this.filterAssignedBooks
+        };
+
+        return (
+            <React.Fragment>
+                <AssignBooksForm
+                    bookList={this.state.bookList}
+                    bookCategoryList={this.state.bookCategoryList}
+                    handleChange={this.handleChange}
+                    assignBook={this.assignBook}
+                />
+
+                <AssignBookManage {...assignBookManageObj}
+                />
+            </React.Fragment>
+        )
+    }
+}
+
+export default AssignBooks

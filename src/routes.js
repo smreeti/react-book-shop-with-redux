@@ -1,6 +1,6 @@
 import Dashboard from "./components/Dashboard";
 import BooksAdd from "./components/BooksAdd/BooksAdd";
-import AssignBooksNav from "./components/BooksAssign/AssignBooksNav";
+import AssignBooks from "./components/BooksAssign/AssignBooks";
 
 const routes = [
     {
@@ -19,7 +19,7 @@ const routes = [
         path: "/assignBook",
         exact: true,
         menu: "Assign Book",
-        main: AssignBooksNav
+        main: AssignBooks
     }
 ];
 
