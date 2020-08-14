@@ -1,9 +1,10 @@
 import React from "react";
 import SelectComponent from "../commons/SelectComponent";
+import bookCategoryData from "./bookCategoryData";
 
 const AssignBooksForm = (props) => {
 
-    const {bookList, bookCategoryList, handleChange, assignBook} = props;
+    const {bookList, handleChange, assignBook} = props;
 
     return (
         <form onSubmit={assignBook}>
@@ -29,7 +30,7 @@ const AssignBooksForm = (props) => {
                         placeholder="Select book category"
                         name="bookCategoryId"
                         handleChange={handleChange}
-                        options={bookCategoryList}
+                        options={bookCategoryData}
                     >
                     </SelectComponent>
                 </div>

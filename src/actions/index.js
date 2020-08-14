@@ -1,12 +1,8 @@
-import {ADD_BOOK, ASSIGN_BOOK, DELETE_BOOK, EDIT_BOOK_STATUS, UPDATE_BOOK} from "./constants/action-types";
+import {ADD_BOOK, ASSIGN_BOOK, DELETE_BOOK, FILTER_ASSIGNED_BOOK, UPDATE_BOOK} from "./constants/action-types";
 
 export const submitBook = (data) => ({
     type: ADD_BOOK,
     payload: data
-});
-
-export const editBookStatus = () => ({
-    type: EDIT_BOOK_STATUS,
 });
 
 export const updateBook = (data) => ({
@@ -22,4 +18,9 @@ export const deleteBook = (id) => ({
 export const assignBook = (data) => ({
     type: ASSIGN_BOOK,
     payload: data
+});
+
+export const filterAssignedBook = (bookCategoryId) => ({
+    type: FILTER_ASSIGNED_BOOK,
+    payload: bookCategoryId
 });
