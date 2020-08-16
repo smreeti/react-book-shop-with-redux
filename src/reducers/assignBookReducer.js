@@ -15,12 +15,9 @@ export const assignBookReducer = (state = initialState, action) => {
             };
 
         case FILTER_ASSIGNED_BOOK: {
-            let filteredObj = state.assignedBookList
-                .find(assigned => assigned.bookCategoryId === (action.payload));
-
             return {
                 ...state,
-                filteredBookList: [...state.filteredBookList, filteredObj]
+                filteredBookList: action.payload
             }
         }
 

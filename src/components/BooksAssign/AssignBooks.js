@@ -2,7 +2,6 @@ import React from "react";
 import AssignBooksForm from "./AssignBooksForm";
 import bookCategoryData from "./bookCategoryData";
 import AssignBookManage from "../BooksAssign/AssignBookManage";
-import store from "../../store";
 import {assignBook, filterAssignedBook} from "../../actions";
 import {connect} from "react-redux";
 
@@ -13,7 +12,6 @@ class AssignBooks extends React.Component {
     state = ({
         bookId: '',
         bookCategoryId: '',
-        filteredBookList: [],
         isSearch: false
     });
 
@@ -42,7 +40,9 @@ class AssignBooks extends React.Component {
             bookCategoryName: bookCategoryName
         };
 
-        store.dispatch(assignBook(assignBookObj));
+        this.props.assignBook(assignBookObj);
+
+        this.resetLocalState();
     };
 
     filterAssignedBooks = async (event) => {
@@ -53,7 +53,17 @@ class AssignBooks extends React.Component {
             isSearch: Boolean(value)
         });
 
-        store.dispatch(filterAssignedBook(value));
+        let filteredObj = this.props.assignedBookList
+            .find(assigned => assigned.bookCategoryId === (value));
+
+        this.props.filterAssignedBook(filteredObj === undefined ? [] : [filteredObj]);
+    };
+
+    resetLocalState = () => {
+        this.setState({
+            bookCategoryId: '',
+            isSearch: false
+        });
     };
 
     render() {
@@ -85,4 +95,12 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(AssignBooks)
+const mapDispatchToProps = {
+    assignBook: assignBookObj => assignBook(assignBookObj),
+    filterAssignedBook: filteredObj => filterAssignedBook(filteredObj)
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AssignBooks)

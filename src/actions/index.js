@@ -20,7 +20,7 @@ export const assignBook = (data) => ({
     payload: data
 });
 
-export const filterAssignedBook = (bookCategoryId) => ({
+export const filterAssignedBook = (data) => ({
     type: FILTER_ASSIGNED_BOOK,
-    payload: bookCategoryId
+    payload: data
 });

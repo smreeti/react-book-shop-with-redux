@@ -1,5 +1,4 @@
 import React from "react";
-import store from "../../store";
 import BooksForm from "./BooksForm";
 import {deleteBook, submitBook, updateBook} from "../../actions";
 import AlertMessageInfo from "../AlertMessageInfo";
@@ -63,7 +62,7 @@ class BooksAdd extends React.Component {
                 }
             });
         } else {
-            store.dispatch(submitBook(data));
+            this.props.submitBook(data);
 
             this.setState({
                 alertMessageInfo: {
@@ -128,11 +127,11 @@ class BooksAdd extends React.Component {
             publishedDate
         };
 
-        store.dispatch(updateBook(data));
+        this.props.updateBook(data);
     };
 
     deleteBook = () => {
-        store.dispatch(deleteBook(this.state.id));
+        this.props.deleteBook(this.state.id);
 
         this.setState({
             showDeleteModal: false,
@@ -190,7 +189,7 @@ class BooksAdd extends React.Component {
                 <BooksManage
                     openDeleteModal={this.openDeleteModal}
                     editBook={this.editBook}
-                    bookList ={this.props.bookList}
+                    bookList={this.props.bookList}
                 />
 
                 <BookDeleteModal showDeleteModal={this.state.showDeleteModal}
@@ -209,4 +208,10 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(BooksAdd);
+const mapDispatchToProps = {
+    submitBook: data => submitBook(data),
+    updateBook: data => updateBook(data),
+    deleteBook: id => deleteBook(id)
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BooksAdd);
