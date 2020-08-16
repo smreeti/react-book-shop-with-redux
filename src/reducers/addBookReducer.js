@@ -1,7 +1,12 @@
 import {ADD_BOOK, DELETE_BOOK, UPDATE_BOOK} from "../actions/constants/action-types";
 
 const initialState = {
-    bookList: [],
+    bookList: [{
+        id: "123",
+        name: "test",
+        author: "sm",
+        publishedDate: "2020-08-14"
+    }],
     editing: false
 };
 

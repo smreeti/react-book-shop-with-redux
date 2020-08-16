@@ -4,6 +4,7 @@ import bookCategoryData from "./bookCategoryData";
 import AssignBookManage from "../BooksAssign/AssignBookManage";
 import store from "../../store";
 import {assignBook, filterAssignedBook} from "../../actions";
+import {connect} from "react-redux";
 
 const shortid = require("shortid");
 
@@ -13,16 +14,8 @@ class AssignBooks extends React.Component {
         bookId: '',
         bookCategoryId: '',
         filteredBookList: [],
-        bookList: [],
         isSearch: false
     });
-
-    componentDidMount() {
-        const bookList = store.getState().addBookReducer.bookList;
-        this.setState({
-            bookList: bookList
-        })
-    }
 
     handleChange = (event) => {
 
@@ -39,7 +32,7 @@ class AssignBooks extends React.Component {
         const bookCategoryName = bookCategoryData
             .find(bookCategory => bookCategory.id === parseInt(this.state.bookCategoryId)).name;
 
-        const bookName = this.state.bookList
+        const bookName = this.props.bookList
             .find(book => book.id === this.state.bookId).name;
 
         const assignBookObj = {
@@ -68,7 +61,7 @@ class AssignBooks extends React.Component {
         return (
             <React.Fragment>
                 <AssignBooksForm
-                    bookList={this.state.bookList}
+                    bookList={this.props.bookList}
                     handleChange={this.handleChange}
                     assignBook={this.assignBook}
                 />
@@ -76,12 +69,20 @@ class AssignBooks extends React.Component {
                 <AssignBookManage
                     isSearch={this.state.isSearch}
                     filterAssignedBooks={this.filterAssignedBooks}
-                    assignedBookList ={store.getState().assignBookReducer.assignedBookList}
-                    filteredBookList={store.getState().assignBookReducer.filteredBookList}
+                    assignedBookList={this.props.assignedBookList}
+                    filteredBookList={this.props.filteredBookList}
                 />
             </React.Fragment>
         )
     }
 }
 
-export default AssignBooks
+const mapStateToProps = (state) => {
+    return {
+        bookList: state.addBookReducer.bookList,
+        assignedBookList: state.assignBookReducer.assignedBookList,
+        filteredBookList: state.assignBookReducer.filteredBookList
+    }
+};
+
+export default connect(mapStateToProps)(AssignBooks)

@@ -5,6 +5,7 @@ import {deleteBook, submitBook, updateBook} from "../../actions";
 import AlertMessageInfo from "../AlertMessageInfo";
 import BooksManage from "./BooksManage";
 import BookDeleteModal from "./BookDeleteModal";
+import {connect} from "react-redux";
 
 const shortid = require("shortid");
 
@@ -34,7 +35,7 @@ class BooksAdd extends React.Component {
     };
 
     validateNameDuplicity = (name) => {
-        const bookList = store.getState().addBookReducer.bookList;
+        const bookList = this.props.bookList;
         return (bookList.filter(book => book.name === name).length > 0);
     };
 
@@ -189,6 +190,7 @@ class BooksAdd extends React.Component {
                 <BooksManage
                     openDeleteModal={this.openDeleteModal}
                     editBook={this.editBook}
+                    bookList ={this.props.bookList}
                 />
 
                 <BookDeleteModal showDeleteModal={this.state.showDeleteModal}
@@ -201,4 +203,10 @@ class BooksAdd extends React.Component {
     }
 }
 
-export default BooksAdd;
+const mapStateToProps = (state) => {
+    return {
+        bookList: state.addBookReducer.bookList
+    }
+};
+
+export default connect(mapStateToProps)(BooksAdd);

@@ -1,7 +1,7 @@
 import React from "react";
-import BreadCrumb from "./BreadCrumb";
 import {Route, Switch} from "react-router-dom";
 import {PageNotFound} from "../PageNotFound";
+import BreadCrumb from "./BreadCrumb";
 
 const Main = ({routes}) => {
 

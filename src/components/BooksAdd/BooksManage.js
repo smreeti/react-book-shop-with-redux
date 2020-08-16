@@ -1,10 +1,9 @@
 import React from 'react'
 import {Table} from 'react-bootstrap'
-import store from "../../store";
 
 const BooksManage = (props) => {
 
-    const bookList= store.getState().addBookReducer.bookList;
+    const {bookList} = props;
 
     return (
         <div>
