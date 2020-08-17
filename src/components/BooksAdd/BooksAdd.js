@@ -149,12 +149,12 @@ class BooksAdd extends React.Component {
         })
     };
 
-    openDeleteModal = (id) => {
+    openDeleteModal = (index) => {
         console.log("Delete Modal clicked");
         this.resetAlertMessage();
         this.setState({
                 showDeleteModal: true,
-                id: id
+                id: index
             }
         );
     };

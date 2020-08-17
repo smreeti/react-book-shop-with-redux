@@ -32,6 +32,7 @@ export default function addBookReducer(state = initialState, action) {
             });
 
             return {
+                ...state,
                 bookList: updatedBookList
             }
         }
@@ -39,7 +40,8 @@ export default function addBookReducer(state = initialState, action) {
         case DELETE_BOOK:
             return {
                 ...state,
-                bookList: state.bookList.filter((book) => book.id !== action.payload)
+                bookList: [...state.bookList.slice(0, action.payload),
+                    ...state.bookList.slice(action.payload + 1)]
             };
 
         default:

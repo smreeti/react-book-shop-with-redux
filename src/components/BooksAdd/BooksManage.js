@@ -30,7 +30,7 @@ const BooksManage = (props) => {
 
                             <td>
                                 <button onClick={() => props.editBook(bookInfo)}> Edit</button>
-                                <button onClick={() => props.openDeleteModal(bookInfo.id)}> Delete</button>
+                                <button onClick={() => props.openDeleteModal(index)}> Delete</button>
                             </td>
                         </tr>
                     ))}
