@@ -1,4 +1,10 @@
-import {ADD_BOOK, DELETE_BOOK, UPDATE_BOOK} from "../actions/constants/action-types";
+import {addBookConstants} from "../actions/constants/addBookConstants";
+
+const {
+    ADD_BOOK,
+    UPDATE_BOOK,
+    DELETE_BOOK
+} = addBookConstants;
 
 const initialState = {
     bookList: [{

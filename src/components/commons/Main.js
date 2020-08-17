@@ -1,15 +1,21 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
-import {PageNotFound} from "../PageNotFound";
-import BreadCrumb from "./BreadCrumb";
+import Login from "../login/Login";
 
-const Main = ({routes}) => {
+import BreadCrumb from "./BreadCrumb";
+import {PageNotFound} from "../PageNotFound";
+import {ProtectedRoute} from "../Protected";
+
+const Main = (props) => {
+
+    const {isLoggedIn, routes} = props;
 
     return (
         <Switch>
+            <Route key="login" exact path="/login" component={Login}/>
             {routes?.map((route, index) => (
 
-                <Route
+                <ProtectedRoute
                     key={index}
                     path={route.path}
                     exact={route.exact}
@@ -20,12 +26,13 @@ const Main = ({routes}) => {
                         </div>
                     }
                 >
-                </Route>
+                </ProtectedRoute>
             ))}
 
             <Route key="pageNotFound" exact path="" component={PageNotFound}/>
+
         </Switch>
-    )
+    );
 };
 
 export default Main;

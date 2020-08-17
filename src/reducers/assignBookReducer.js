@@ -1,4 +1,9 @@
-import {ASSIGN_BOOK, FILTER_ASSIGNED_BOOK} from "../actions/constants/action-types";
+import {assignBookConstants} from "../actions/constants/assignBookConstants";
+
+const {
+    ASSIGN_BOOK,
+    FILTER_ASSIGNED_BOOK
+} = assignBookConstants;
 
 const initialState = {
     assignedBookList: [],

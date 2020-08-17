@@ -2,6 +2,7 @@ import Dashboard from "./components/Dashboard";
 import BooksAdd from "./components/BooksAdd/BooksAdd";
 import AssignBooks from "./components/BooksAssign/AssignBooks";
 import Users from "./components/users/Users";
+import Logout from "./components/login/Logout";
 
 const routes = [
     {
@@ -27,6 +28,12 @@ const routes = [
         exact: true,
         menu: "User Setup",
         main: Users
+    },
+    {
+        path: "/logout",
+        exact: true,
+        menu: "Logout",
+        main: Logout
     },
 ];
 

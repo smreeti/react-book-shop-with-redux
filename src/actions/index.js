@@ -1,4 +1,17 @@
-import {ADD_BOOK, ASSIGN_BOOK, DELETE_BOOK, FILTER_ASSIGNED_BOOK, UPDATE_BOOK} from "./constants/action-types";
+import {addBookConstants} from "./constants/addBookConstants";
+import {assignBookConstants} from "./constants/assignBookConstants";
+import {LOGIN} from "./constants/loginConstants";
+
+const {
+    ADD_BOOK,
+    UPDATE_BOOK,
+    DELETE_BOOK
+} = addBookConstants;
+
+const {
+    ASSIGN_BOOK,
+    FILTER_ASSIGNED_BOOK
+} = assignBookConstants;
 
 export const submitBook = (data) => ({
     type: ADD_BOOK,
@@ -23,4 +36,9 @@ export const assignBook = (data) => ({
 export const filterAssignedBook = (data) => ({
     type: FILTER_ASSIGNED_BOOK,
     payload: data
+});
+
+export const login = (isLoggedIn) => ({
+    type: LOGIN,
+    payload:isLoggedIn
 });
