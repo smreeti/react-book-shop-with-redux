@@ -1,6 +1,7 @@
 import Dashboard from "./components/Dashboard";
 import BooksAdd from "./components/BooksAdd/BooksAdd";
 import AssignBooks from "./components/BooksAssign/AssignBooks";
+import Users from "./components/users/Users";
 
 const routes = [
     {
@@ -20,7 +21,13 @@ const routes = [
         exact: true,
         menu: "Assign Book",
         main: AssignBooks
-    }
+    },
+    {
+        path: "/users",
+        exact: true,
+        menu: "User Setup",
+        main: Users
+    },
 ];
 
 export default routes;
