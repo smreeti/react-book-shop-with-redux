@@ -117,7 +117,9 @@ class BooksAdd extends React.Component {
         );
     };
 
-    updateBook = () => {
+    updateBook = (event) => {
+
+        event.preventDefault();
 
         const {id, name, author, publishedDate} = this.state;
         const data = {
