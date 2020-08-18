@@ -8,7 +8,7 @@ import {ProtectedRoute} from "../Protected";
 
 const Main = (props) => {
 
-    const {isLoggedIn, routes} = props;
+    const { routes} = props;
 
     return (
         <Switch>
