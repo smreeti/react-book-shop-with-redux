@@ -22,20 +22,19 @@ class Login extends Component {
     };
 
     handleClick = () => {
-        let isLoggedIn = false;
+        let isUserValid = false;
 
         users.map(user => {
             if (user.name === this.state.name && user.password === this.state.password) {
-                isLoggedIn = true;
+                isUserValid = true;
             }
-            return isLoggedIn;
+            return isUserValid;
         });
 
-        if (isLoggedIn) {
+        if (isUserValid) {
             console.log(this.props.history.push('/'));
             localStorage.setItem('login', JSON.stringify({name: this.state.name}));
-
-            this.props.login(true);
+            this.props.login();
         } else {
             alert("Incorrect user credential")
         }
@@ -52,13 +51,8 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    isLoggedIn: state.loginReducer.isLoggedIn
-
-});
-
 const mapDispatchToProps = {
-    login: (isLoggedIn) => login(isLoggedIn)
+    login: () => login()
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

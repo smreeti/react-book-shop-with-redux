@@ -1,5 +1,7 @@
 import React from "react";
 import {Redirect, Route} from "react-router-dom";
+import Sidebar from "./commons/Sidebar";
+import routes from "../routes";
 
 export const ProtectedRoute = ({
                                    component: Component,
@@ -9,9 +11,15 @@ export const ProtectedRoute = ({
         <Route
             {...rest}
             render={props => {
+                const {isLoggedIn} = {...rest};
 
-                if (localStorage.getItem('login')) {
-                    return <Component {...props} />;
+                if (isLoggedIn) {
+                    return (
+                        <>
+                            <Sidebar routes={routes}/>
+                            <Component {...props} />
+                        </>
+                    );
                 } else {
                     return (
                         <Redirect

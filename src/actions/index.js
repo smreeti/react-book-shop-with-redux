@@ -1,6 +1,6 @@
 import {addBookConstants} from "./constants/addBookConstants";
 import {assignBookConstants} from "./constants/assignBookConstants";
-import {LOGIN} from "./constants/loginConstants";
+import {LOGIN, LOGOUT} from "./constants/loginConstants";
 import {userConstants} from "./constants/userConstants";
 
 const {
@@ -45,9 +45,12 @@ export const filterAssignedBook = (data) => ({
     payload: data
 });
 
-export const login = (isLoggedIn) => ({
-    type: LOGIN,
-    payload: isLoggedIn
+export const login = () => ({
+    type: LOGIN
+});
+
+export const logout = () => ({
+    type: LOGOUT
 });
 
 export const fetchUsers = (data) => ({

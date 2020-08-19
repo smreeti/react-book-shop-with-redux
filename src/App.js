@@ -4,7 +4,6 @@ import routes from "./routes";
 import {connect} from "react-redux";
 import {HashRouter} from "react-router-dom";
 import Main from "./components/commons/Main";
-import Sidebar from "./components/commons/Sidebar";
 
 class App extends Component{
 
@@ -13,9 +12,8 @@ class App extends Component{
             <div>
                 <HashRouter>
                     <div style={{display: "flex"}}>
-                        <Sidebar routes={routes}/>
                         <Main routes={routes}
-
+                              isLoggedIn={this.props.isLoggedIn}
                         />
                     </div>
                 </HashRouter>

@@ -1,12 +1,29 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
+import {connect} from "react-redux";
+import {logout} from "../../actions";
+import {Component} from "react/cjs/react.production.min";
 
-const Logout = () => {
-    localStorage.clear();
+class Logout extends Component {
 
-    return (
-        <Redirect to="/login"/>
-    )
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        this.props.logout();
+    };
+
+    render() {
+        return (
+            <>
+                <p> Are you sure? </p>
+                <button onClick={this.handleSubmit}>Yes</button>
+            </>
+
+        )
+    }
+}
+
+const mapDispatchToProps = {
+    logout: () => logout()
 };
 
-export default Logout;
+export default connect(null, mapDispatchToProps)(Logout);

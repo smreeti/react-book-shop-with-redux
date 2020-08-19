@@ -8,7 +8,7 @@ import {ProtectedRoute} from "../Protected";
 
 const Main = (props) => {
 
-    const { routes} = props;
+    const {routes, isLoggedIn} = props;
 
     return (
         <Switch>
@@ -19,6 +19,7 @@ const Main = (props) => {
                     key={index}
                     path={route.path}
                     exact={route.exact}
+                    isLoggedIn={isLoggedIn}
                     component={(props) =>
                         <div>
                             <BreadCrumb {...props} data={route}/>

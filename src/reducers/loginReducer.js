@@ -1,4 +1,4 @@
-import {LOGIN} from "../actions/constants/loginConstants";
+import {LOGIN, LOGOUT} from "../actions/constants/loginConstants";
 
 const initialState = {
     isLoggedIn: false
@@ -11,7 +11,13 @@ export const loginReducer = (state = initialState, action) => {
         case LOGIN:
             return {
                 ...state,
-                isLoggedIn: Boolean(localStorage.getItem('login'))
+                isLoggedIn: true
+            };
+
+        case LOGOUT:
+            return {
+                ...state,
+                isLoggedIn: false
             };
 
         default:
