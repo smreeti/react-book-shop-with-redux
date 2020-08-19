@@ -1,6 +1,7 @@
 import {addBookConstants} from "./constants/addBookConstants";
 import {assignBookConstants} from "./constants/assignBookConstants";
 import {LOGIN} from "./constants/loginConstants";
+import {userConstants} from "./constants/userConstants";
 
 const {
     ADD_BOOK,
@@ -12,6 +13,12 @@ const {
     ASSIGN_BOOK,
     FILTER_ASSIGNED_BOOK
 } = assignBookConstants;
+
+const {
+    FETCH_USERS,
+    SAVE_USER,
+    HANDLE_USER_ACTION_ERROR
+} = userConstants;
 
 export const submitBook = (data) => ({
     type: ADD_BOOK,
@@ -40,5 +47,21 @@ export const filterAssignedBook = (data) => ({
 
 export const login = (isLoggedIn) => ({
     type: LOGIN,
-    payload:isLoggedIn
+    payload: isLoggedIn
 });
+
+export const fetchUsers = (data) => ({
+    type: FETCH_USERS,
+    payload: data
+});
+
+export const saveUsers = (saveData) => ({
+    type: SAVE_USER,
+    payload: saveData
+});
+
+export const handleUserError = (errorMessage) => ({
+    type: HANDLE_USER_ACTION_ERROR,
+    payload: errorMessage
+});
+

@@ -1,51 +1,51 @@
 import React from "react";
-import API from '../../axios/axios-interceptor'
 import AddUser from "../users/AddUser";
 import AvailableUserHeader from "../users/AvailableUserHeader";
 import AvailableUsers from "../users/AvailableUsers";
+import userActions from "../../actions/userActions"
+import {connect} from "react-redux";
+import shortid from "shortid";
+
+const {
+    fetchUsers,
+    saveUser,
+} = userActions;
 
 class Users extends React.Component {
     state = {
-        name: '',
-        users: []
+        name: ''
     };
 
-    async componentDidMount() {
-
-        try {
-            const userResponse = await API.get('/users');
-
-            this.setState({
-                    /*Here response is the data we need, since response interceptor already retrieved it
-                    * so we no longer need to use response.data anymore.*/
-                    users: userResponse
-                }
-            )
-        } catch (e) {
-            console.log("Error:" + e);
-        }
+    componentDidMount() {
+        this.props.fetchUsers();
     }
 
     handleChange = (event) => {
         this.setState({name: event.target.value});
     };
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
 
         const newUserObj = {
-            id: this.state.users.length + 1,
+            id: shortid.generate(),
             name: this.state.name
         };
 
-        API.post('/users/', {newUserObj})
-            .then(response => {
-                console.log(response);
-                this.setState({
-                    users: [...this.state.users, response.newUserObj]
-                })
-            })
+        try {
+            await this.props.saveUser(newUserObj);
+            alert(this.props.successMessage);
+        } catch (e) {
+            alert(this.props.errorMessage);
+        }
 
+        this.resetLocalState();
+    };
+
+    resetLocalState = () => {
+        this.setState({
+            name: ''
+        })
     };
 
     render() {
@@ -53,14 +53,27 @@ class Users extends React.Component {
             <div>
                 <AvailableUserHeader/>
 
-                <AvailableUsers users={this.state.users}/>
+                <AvailableUsers users={this.props.users}/>
 
-                <AddUser handleChange={this.handleChange}
-                         handleSubmit={this.handleSubmit}
+                <AddUser
+                    name={this.state.name}
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
                 />
             </div>
         );
     }
 }
 
-export default Users;
+const mapStateToProps = (state) => ({
+    users: state.userReducer.users,
+    successMessage: state.userReducer.successMessage,
+    errorMessage: state.userReducer.errorMessage
+});
+
+const mapDispatchToProps = {
+    fetchUsers: () => fetchUsers(),
+    saveUser: (data) => saveUser(data)
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);

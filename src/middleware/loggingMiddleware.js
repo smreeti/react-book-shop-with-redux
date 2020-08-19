@@ -7,8 +7,6 @@ const loggingMiddleware = (store)=>(next)=>(action)=>{
     console.log("Next state", store.getState())
 };
 
-
-
 export default loggingMiddleware;
 
 

@@ -1,0 +1,8 @@
+export const userConstants = {
+    FETCH_USERS: "FETCH_USERS",
+
+    SAVE_USER: "SAVE_USER",
+
+    HANDLE_USER_ACTION_ERROR: "HANDLE_USER_ACTION_ERROR",
+};
+
