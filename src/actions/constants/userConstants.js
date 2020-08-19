@@ -1,4 +1,7 @@
 export const userConstants = {
+
+    FETCH_USERS_BEGIN: "FETCH_USERS_BEGIN",
+
     FETCH_USERS: "FETCH_USERS",
 
     SAVE_USER: "SAVE_USER",

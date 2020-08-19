@@ -2,14 +2,14 @@ import React from "react";
 import AddUser from "../users/AddUser";
 import AvailableUserHeader from "../users/AvailableUserHeader";
 import AvailableUsers from "../users/AvailableUsers";
-import userActions from "../../actions/userActions"
+import userActionsMiddleware from "../../actions/userActionsMiddleware"
 import {connect} from "react-redux";
 import shortid from "shortid";
 
 const {
     fetchUsers,
     saveUser,
-} = userActions;
+} = userActionsMiddleware;
 
 class Users extends React.Component {
     state = {
@@ -49,27 +49,38 @@ class Users extends React.Component {
     };
 
     render() {
+        const {users, isLoading, errorMessage} = this.props;
+
         return (
             <div>
                 <AvailableUserHeader/>
 
-                <AvailableUsers users={this.props.users}/>
+                <AvailableUsers users={users}
+                                isLoading={isLoading}
+                                errorMessage={errorMessage}
+                />
 
                 <AddUser
                     name={this.state.name}
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                 />
+
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => ({
-    users: state.userReducer.users,
-    successMessage: state.userReducer.successMessage,
-    errorMessage: state.userReducer.errorMessage
-});
+const mapStateToProps = (state) => {
+    const {users, successMessage, errorMessage, isLoading} = state.userReducer;
+
+    return {
+        users,
+        successMessage,
+        errorMessage,
+        isLoading
+    };
+};
 
 const mapDispatchToProps = {
     fetchUsers: () => fetchUsers(),

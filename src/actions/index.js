@@ -15,6 +15,7 @@ const {
 } = assignBookConstants;
 
 const {
+    FETCH_USERS_BEGIN,
     FETCH_USERS,
     SAVE_USER,
     HANDLE_USER_ACTION_ERROR
@@ -51,6 +52,10 @@ export const login = () => ({
 
 export const logout = () => ({
     type: LOGOUT
+});
+
+export const fetchUsersBegin = () => ({
+    type: FETCH_USERS_BEGIN
 });
 
 export const fetchUsers = (data) => ({

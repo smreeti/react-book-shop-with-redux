@@ -88,10 +88,12 @@ class AssignBooks extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+
+    const {bookList} = state.addBookReducer;
+    const {assignedBookList, filteredBookList} = state.assignBookReducer;
+
     return {
-        bookList: state.addBookReducer.bookList,
-        assignedBookList: state.assignBookReducer.assignedBookList,
-        filteredBookList: state.assignBookReducer.filteredBookList
+        bookList, assignedBookList, filteredBookList
     }
 };
 

@@ -2,11 +2,16 @@ import React from "react";
 
 const AvailableUsers = (props) => {
 
+    const {users, isLoading, errorMessage} = props;
     return (
         <>
-            {props.users.length > 0 ?
+            {isLoading && "Loading"}
 
-                props.users.map(user =>
+            {errorMessage && "Error"}
+
+            {users.length > 0 ?
+
+                users.map(user =>
                     <li key={user.id}>  {user.name}</li>
                 )
                 : 'Error'

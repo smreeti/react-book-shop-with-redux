@@ -1,9 +1,11 @@
 import API from "../axios/axios-interceptor";
-import {fetchUsers, handleUserError, saveUsers} from "./index";
+import {fetchUsers, fetchUsersBegin, handleUserError, saveUsers} from "./index";
 
-const userActions = {
+const userActionsMiddleware = {
 
     fetchUsers: () => async dispatch => {
+
+        dispatch(fetchUsersBegin());
 
         try {
 
@@ -15,7 +17,7 @@ const userActions = {
             dispatch(fetchUsers(response));
             return response;
         } catch (e) {
-            // dispatch(FETCH_USERS_ERROR, "Error");
+            dispatch(handleUserError("Something went wrong"));
             throw  e;
         }
     },
@@ -40,6 +42,6 @@ const userActions = {
     }
 };
 
-export default userActions
+export default userActionsMiddleware
 
 
