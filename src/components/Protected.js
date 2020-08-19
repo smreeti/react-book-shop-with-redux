@@ -14,6 +14,7 @@ export const ProtectedRoute = ({
                 const {isLoggedIn} = {...rest};
 
                 if (isLoggedIn) {
+
                     return (
                         <>
                             <Sidebar routes={routes}/>

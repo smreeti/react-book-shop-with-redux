@@ -12,7 +12,9 @@ const Main = (props) => {
 
     return (
         <Switch>
+
             <Route key="login" exact path="/login" component={Login}/>
+
             {routes?.map((route, index) => (
 
                 <ProtectedRoute
@@ -31,6 +33,7 @@ const Main = (props) => {
             ))}
 
             <Route key="pageNotFound" exact path="" component={PageNotFound}/>
+
 
         </Switch>
     );
