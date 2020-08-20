@@ -1,8 +1,19 @@
 import React from "react";
 
+const dummy = "https://static.thenounproject.com/png/625182-200.png";
+
 const BooksForm = (props) => {
 
-    const {bookObj, editing, handleChange, handleSubmit, updateBook, setEditing} = props;
+    const {
+        bookObj,
+        editing,
+        handleChange,
+        handleSubmit,
+        updateBook,
+        setEditing,
+        image,
+        uploadImage
+    } = props;
 
     const addButton = (
 
@@ -55,6 +66,23 @@ const BooksForm = (props) => {
                            required/>
                 </div>
             </div>
+
+            <br/>
+            <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Upload Image</label>
+                <div className="col-sm-10">
+                    <h3>Current</h3>
+                    <img
+                        src={image ? image : dummy}
+                        alt="custom-pic"
+                        style={{height: 100, width: 100}}
+                    />
+                </div>
+                <hr/>
+
+                <input type="file" onChange={uploadImage}/>
+            </div>
+
             <br/>
 
             <div className="form-group row">

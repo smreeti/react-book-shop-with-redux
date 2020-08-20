@@ -14,6 +14,7 @@ class BooksAdd extends React.Component {
         name: '',
         author: '',
         publishedDate: '',
+        image: null,
         alertMessageInfo: {
             showMessage: false,
             type: '',
@@ -48,7 +49,8 @@ class BooksAdd extends React.Component {
             id: shortid.generate(),
             name: this.state.name,
             author: this.state.author,
-            publishedDate: this.state.publishedDate
+            publishedDate: this.state.publishedDate,
+            image: this.state.image
         };
 
         let isNameExists = this.validateNameDuplicity(data.name);
@@ -92,6 +94,7 @@ class BooksAdd extends React.Component {
             name: '',
             author: '',
             publishedDate: '',
+            image: '',
             showAlertModal: true
         })
     };
@@ -112,7 +115,8 @@ class BooksAdd extends React.Component {
                 id: bookInfo.id,
                 name: bookInfo.name,
                 author: bookInfo.author,
-                publishedDate: bookInfo.publishedDate
+                publishedDate: bookInfo.publishedDate,
+                image: bookInfo.image
             }
         );
     };
@@ -121,15 +125,18 @@ class BooksAdd extends React.Component {
 
         event.preventDefault();
 
-        const {id, name, author, publishedDate} = this.state;
+        const {id, name, author, publishedDate, image} = this.state;
         const data = {
             id,
             name,
             author,
-            publishedDate
+            publishedDate,
+            image
         };
 
         this.props.updateBook(data);
+
+        this.resetStateParams();
     };
 
     deleteBook = () => {
@@ -161,6 +168,12 @@ class BooksAdd extends React.Component {
         );
     };
 
+    uploadImage = (event) => {
+        this.setState({
+            image: URL.createObjectURL(event.target.files[0])
+        })
+    };
+
     render() {
         const bookObj = {
             name: this.state.name,
@@ -178,6 +191,8 @@ class BooksAdd extends React.Component {
                     handleSubmit={this.handleSubmit}
                     updateBook={this.updateBook}
                     setEditing={this.setEditing}
+                    image={this.state.image}
+                    uploadImage={this.uploadImage}
                 />
 
                 <br/>

@@ -32,6 +32,7 @@ export default function addBookReducer(state = initialState, action) {
                     book.name = action.payload.name;
                     book.author = action.payload.author;
                     book.publishedDate = action.payload.publishedDate;
+                    book.image = action.payload.image
                 }
 
                 return book;
