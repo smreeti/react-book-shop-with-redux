@@ -1,6 +1,6 @@
 import React from "react";
 
-const dummy = "https://static.thenounproject.com/png/625182-200.png";
+// const dummy = "https://static.thenounproject.com/png/625182-200.png";
 
 const BooksForm = (props) => {
 
@@ -11,8 +11,8 @@ const BooksForm = (props) => {
         handleSubmit,
         updateBook,
         setEditing,
-        image,
-        uploadImage
+        // image,
+        // uploadImage
     } = props;
 
     const addButton = (
@@ -68,20 +68,20 @@ const BooksForm = (props) => {
             </div>
 
             <br/>
-            <div className="form-group row">
-                <label className="col-sm-2 col-form-label">Upload Image</label>
-                <div className="col-sm-10">
-                    <h3>Current</h3>
-                    <img
-                        src={image ? image : dummy}
-                        alt="custom-pic"
-                        style={{height: 100, width: 100}}
-                    />
-                </div>
-                <hr/>
+            {/*<div className="form-group row">*/}
+            {/*    <label className="col-sm-2 col-form-label">Upload Image</label>*/}
+            {/*    <div className="col-sm-10">*/}
+            {/*        <h3>Current</h3>*/}
+            {/*        <img*/}
+            {/*            src={image ? image : dummy}*/}
+            {/*            alt="custom-pic"*/}
+            {/*            style={{height: 100, width: 100}}*/}
+            {/*        />*/}
+            {/*    </div>*/}
+            {/*    <hr/>*/}
 
-                <input type="file" onChange={uploadImage}/>
-            </div>
+            {/*    /!*<input type="file" onChange={uploadImage}/>*!/*/}
+            {/*</div>*/}
 
             <br/>
 

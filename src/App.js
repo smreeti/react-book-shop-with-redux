@@ -13,7 +13,7 @@ class App extends Component{
                 <HashRouter>
                     <div style={{display: "flex"}}>
                         <Main routes={routes}
-                              isLoggedIn={this.props.isLoggedIn}
+                              isLoggedIn={true}
                         />
                     </div>
                 </HashRouter>

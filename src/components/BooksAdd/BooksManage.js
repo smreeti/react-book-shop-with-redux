@@ -1,7 +1,7 @@
 import React from 'react'
 import {Table} from 'react-bootstrap'
-
-const dummy = "https://static.thenounproject.com/png/625182-200.png";
+//
+// const dummy = "https://static.thenounproject.com/png/625182-200.png";
 
 const BooksManage = (props) => {
 
@@ -15,7 +15,7 @@ const BooksManage = (props) => {
                     <thead>
                     <tr>
                         <th>S.N.</th>
-                        <th>Image</th>
+                        {/*<th>Image</th>*/}
                         <th>Name</th>
                         <th>Author</th>
                         <th>Published Date</th>
@@ -27,12 +27,12 @@ const BooksManage = (props) => {
                     {bookList.map((bookInfo, index) => (
                         <tr key={bookInfo.id}>
                             <td>{index + 1}</td>
-                            <td><img
-                                src={bookInfo.image ? bookInfo.image :
-                                    dummy}
-                                alt="custom-pic"
-                                style={{height: 100, width: 100}}
-                            /></td>
+                            {/*<td><img*/}
+                            {/*    src={bookInfo.image ? bookInfo.image :*/}
+                            {/*        dummy}*/}
+                            {/*    alt="custom-pic"*/}
+                            {/*    style={{height: 100, width: 100}}*/}
+                            {/*/></td>*/}
                             <td>{bookInfo.name}</td>
                             <td>{bookInfo.author}</td>
                             <td>{bookInfo.publishedDate}</td>

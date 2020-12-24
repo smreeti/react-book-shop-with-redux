@@ -3,6 +3,7 @@ import BooksAdd from "./components/BooksAdd/BooksAdd";
 import AssignBooks from "./components/BooksAssign/AssignBooks";
 import Users from "./components/users/Users";
 import Logout from "./components/login/Logout";
+import BooksAddWithHooks from "./components/BooksAdd/BooksAddWithHooks";
 
 const routes = [
     {
@@ -16,6 +17,12 @@ const routes = [
         exact: true,
         menu: "Books Add",
         main: BooksAdd
+    },
+    {
+        path: "/addBookHooks",
+        exact: true,
+        menu: "Books Add (Hooks)",
+        main: BooksAddWithHooks
     },
     {
         path: "/assignBook",
